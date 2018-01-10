@@ -20,23 +20,16 @@ export default class RecItem extends Component<{}> {
     constructor(props) {
         super(props);  // 初始状态
         this.state = {
-            dataSource :{
-                name:this.props.name,
-                picurl:this.props.picurl,
-                isClick:this.props.isClick,
-            }
+            isClick:this.props.isClick,
         };
+        console.log(this.props.address)
     }
     componentWillMount(){
     }
     _onPressButton(e){
-        let dataSource=this.state.dataSource
-        dataSource.isClick=true
-        this.setState(
-           {
-               dataSourse:dataSource
-           }
-        )
+        this.setState({
+               isClick:true
+           })
         Alert.alert(
             'Alert Title'
         )
@@ -46,7 +39,7 @@ export default class RecItem extends Component<{}> {
     }
     render() {
         let buttomImage;
-        if(this.state.dataSource.isClick){
+        if(this.state.isClick){
             buttomImage=(
                 <Image
                 style={styles.button}
@@ -64,12 +57,15 @@ export default class RecItem extends Component<{}> {
                 <TouchableHighlight
                     onPress={this._onPressItem.bind(this)} >
                     <Image
-                        source={{uri:this.state.dataSource.picurl}}
+                        source={{uri:this.props.picurl}}
                         style={styles.UserImage}
                     />
                 </TouchableHighlight>
                 <View style={styles.UserInfo}>
-                    <Text style={styles.UserName}>{this.state.dataSource.name}</Text>
+                    <View style={styles.UserTitle}>
+                        <Text style={styles.UserName}>{this.props.name}</Text>
+                        <Text style={styles.UserAddress}>{this.props.address}  {this.props.localtionnum}</Text>
+                    </View>
                     <TouchableHighlight
                         underlayColor="#fff"
                         onPress={this._onPressButton.bind(this)}>
@@ -100,8 +96,16 @@ const styles = StyleSheet.create({
         // 一行显示不下,换一行
         alignItems:'center', // 必须设置,否则换行不起作用
     },
+    UserTitle:{
+        flexDirection:'column',
+    },
+    UserAddress:{
+        fontSize:11,
+        color:'#999',
+        marginLeft:10,
+    },
     UserName:{
-        color:'#777',
+        color:'#444',
         marginLeft:10,
         width:itemWidth-60
     },

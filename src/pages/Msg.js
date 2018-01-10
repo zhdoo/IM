@@ -29,9 +29,7 @@ export default class Msg extends Component<{}> {
                 <Text style={styles.welcome}>
                    私信
                 </Text>
-                <Text style={styles.instructions}>
-                    左忆茹
-                </Text>
+
                 <Text style={styles.instructions}>
                     {instructions}
                 </Text>

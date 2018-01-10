@@ -1,14 +1,9 @@
-
-
-
 console.disableYellowBox = true
-
-
 import { StackNavigator } from "react-navigation";
 
 import Home from './src/pages/Home'
 import Search from './src/pages/Search'
-import ChatWindow from './src/pages/ChatWindow'
+import UserInfo from './src/pages/UserInfo'
 
 const App = StackNavigator({
     Home: {
@@ -18,8 +13,8 @@ const App = StackNavigator({
         screen: Search,
     }
     ,
-    ChatWindow: {
-        screen: ChatWindow,
+    UserInfo: {
+        screen: UserInfo,
     }
 
 

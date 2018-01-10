@@ -25,7 +25,6 @@ const Home = TabNavigator({
                     />
                 ),
             },
-
         },
         Msg: {
             screen: Msg,
