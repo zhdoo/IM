@@ -18,7 +18,6 @@ import {
 
 import Swiper from 'react-native-swiper'
 
-import PopupDialog from 'react-native-popup-dialog';
 
 const { width } = Dimensions.get('window')
 
@@ -93,7 +92,7 @@ export default class UserInfo extends Component<{}> {
                     </View>
 
                     <TouchableHighlight onPress={()=>{
-                        this.popupDialog.show();
+
                     }}  underlayColor='rgba(0,0,0,0)'>
                     <View style={styles.userInfoBaseRight} >
                             <Image
@@ -103,9 +102,7 @@ export default class UserInfo extends Component<{}> {
                         <Text>查看是否在线</Text>
                     </View>
                     </TouchableHighlight>
-                    <PopupDialog
-                        ref={(popupDialog) => { this.popupDialog = popupDialog; }}
-                    />
+
                 </View>
 
             </View>
