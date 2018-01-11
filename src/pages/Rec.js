@@ -9,6 +9,7 @@ import {
     StyleSheet,
     View,
     Image,
+    Text,
     FlatList,
     TouchableHighlight,
 } from 'react-native';
@@ -33,7 +34,11 @@ import Search from './Search'
     }
     static navigationOptions = ({navigation}) => ({
         title: '推荐',
-        headerRight:<View>
+        titleStyle:{
+            backgroundColor:'#c51a26',
+        },
+        headerRight:
+            <View>
             <TouchableHighlight
                 style={{width:30,height:30,marginRight:5}}
                 onPress={()=>{
@@ -48,6 +53,7 @@ import Search from './Search'
                 />
             </TouchableHighlight>
         </View>
+
     })
      _onPress(){
          console.log(this.props)
@@ -63,10 +69,8 @@ import Search from './Search'
                 onRefresh={()=>{
                     console.log(123)
                 }}
-
                 renderItem={({item}) => <RecItem  address={item.address} localtionnum={item.locationnum} name={item.name} picurl={item.picurl} isClick={item.isClick} onPressItem={this._onPress.bind(this)} />}
             />
-
         );
     }
 }
@@ -76,11 +80,9 @@ import Search from './Search'
 
 
 const  styles=StyleSheet.create({
-
     HomeMain:{
         backgroundColor:'#ddd',
     }
-
 })
 
 export default  RecScreen

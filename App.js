@@ -11,8 +11,7 @@ const App = StackNavigator({
     },
     Search: {
         screen: Search,
-    }
-    ,
+    },
     UserInfo: {
         screen: UserInfo,
     }

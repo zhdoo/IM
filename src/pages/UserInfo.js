@@ -22,8 +22,6 @@ export default class UserInfo extends Component<{}> {
     static navigationOptions = ({navigation}) => ({
         header:null,
     })
-
-
     render() {
         const renderPagination = (index, total, context) => {
             return (
@@ -62,13 +60,11 @@ export default class UserInfo extends Component<{}> {
                     </View>
                 </Swiper>
                 <Text>123213</Text>
-
-
                 <View style={styles.backButton}>
                     <TouchableHighlight
                         onPress={()=>{
                         this.props.navigation.goBack()
-                    }}
+                        }}
                         underlayColor={'null'}
                     >
                         <Image
@@ -76,7 +72,11 @@ export default class UserInfo extends Component<{}> {
                             style={styles.backButtonIcon}
                         />
                     </TouchableHighlight>
-
+                </View>
+                <View style={styles.userInfoBase}>
+                    <View>123123</View>
+                    <View>123123</View>
+                    <View>123123</View>
                 </View>
             </View>
 
@@ -97,6 +97,9 @@ const styles=StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         opacity:0.3
+    },
+    userInfoBase:{
+        flexDirection:'row',
     },
     slide: {
        height:400,
