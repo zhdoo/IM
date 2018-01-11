@@ -59,7 +59,6 @@ export default class UserInfo extends Component<{}> {
                         />
                     </View>
                 </Swiper>
-                <Text>123213</Text>
                 <View style={styles.backButton}>
                     <TouchableHighlight
                         onPress={()=>{
@@ -74,9 +73,17 @@ export default class UserInfo extends Component<{}> {
                     </TouchableHighlight>
                 </View>
                 <View style={styles.userInfoBase}>
-                    <View>123123</View>
-                    <View>123123</View>
-                    <View>123123</View>
+                    <View style={styles.userInfoBaseLeft}>
+                        <Image style={styles.headImage}
+                               source={{uri:'http://pic2.58.com/jiaoyou/yyw_img/212.jpg'}}
+                        />
+                    </View>
+                    <View style={styles.userInfoBaseCenter}>
+                        <Text style={styles.userInfoName}>123123</Text>
+                        <View  style={styles.userInfoAddress} >
+                        </View>
+                    </View>
+                    <View style={styles.userInfoBaseRight}><Text>123123</Text></View>
                 </View>
             </View>
 
@@ -98,8 +105,31 @@ const styles=StyleSheet.create({
         alignItems: 'center',
         opacity:0.3
     },
+    headImage:{
+        width:60,
+        height:60,
+        borderRadius:30,
+        opacity:1
+    },
     userInfoBase:{
         flexDirection:'row',
+        position:'absolute',
+        top:310,
+        width:width-20,
+        left:10,
+        padding:10,
+        height:80  ,
+        backgroundColor:'#fff',
+        borderRadius:5
+    },
+    userInfoBaseLeft:{
+        marginRight:10
+    },
+    userInfoBaseCenter:{
+        flex:1
+    },
+    userInfoBaseRight:{
+        flex:1
     },
     slide: {
        height:400,
