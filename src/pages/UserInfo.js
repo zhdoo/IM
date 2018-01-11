@@ -12,7 +12,8 @@ import {
     View,
     Image,
     Button,
-    Dimensions
+    Dimensions,
+    TouchableHighlight
 } from 'react-native'
 import Swiper from 'react-native-swiper'
 const { width } = Dimensions.get('window')
@@ -34,15 +35,15 @@ export default class UserInfo extends Component<{}> {
             )
         }
         return (
-            <View style={{width:'100%',height:300}}>
-                <Swiper style={styles.wrapper}
-                        dot={<View style={{backgroundColor: 'rgba(255,255,255,.3)', width: 10, height: 10, borderRadius: 5, marginLeft: 5, marginRight: 5}} />}
-                        activeDot={<View style={{backgroundColor: '#fff', width: 10, height: 10, borderRadius: 5, marginLeft: 7, marginRight: 5}} />}
-                        paginationStyle={{
-                            bottom: 40
-                        }}
-                        loop={true}
-
+            <View style={{width:'100%',height:400}}>
+                <Swiper
+                    style={styles.wrapper}
+                    dot={<View style={{backgroundColor: 'rgba(255,255,255,.3)', width: 8, height: 8, borderRadius: 4, marginLeft: 5, marginRight: 5}} />}
+                    activeDot={<View style={{backgroundColor: '#fff', width: 8, height: 8, borderRadius: 4, marginLeft: 5, marginRight: 5}} />}
+                    paginationStyle={{
+                        bottom: 100
+                    }}
+                    loop={true}
                 >
                     <View style={styles.slide}>
                         <Image style={styles.image}
@@ -61,9 +62,22 @@ export default class UserInfo extends Component<{}> {
                     </View>
                 </Swiper>
                 <Text>123213</Text>
-                <Button title="back" onPress={()=>{
-                    this.props.navigation.goBack()
-                }}/>
+
+
+                <View style={styles.backButton}>
+                    <TouchableHighlight
+                        onPress={()=>{
+                        this.props.navigation.goBack()
+                    }}
+                        underlayColor={'null'}
+                    >
+                        <Image
+                            source={require('../images/back.png')}
+                            style={styles.backButtonIcon}
+                        />
+                    </TouchableHighlight>
+
+                </View>
             </View>
 
         );
@@ -71,11 +85,21 @@ export default class UserInfo extends Component<{}> {
 }
 
 const styles=StyleSheet.create({
-    wrapper: {
-        height:300,
+    backButton:{
+        position:'absolute',
+        top:30,
+        left:20,
+        width:40,
+        height:40,
+        borderRadius:20,
+        backgroundColor:'#000',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        opacity:0.3
     },
     slide: {
-       height:300,
+       height:400,
         backgroundColor: 'red'
     },
     text: {
@@ -84,11 +108,15 @@ const styles=StyleSheet.create({
         fontWeight: 'bold'
     },
     image: {
-        height:300,
+        height:400,
         width,
     },
     paginationText: {
         color: 'white',
         fontSize: 20
+    },
+    backButtonIcon:{
+        width:30,
+        height:20,
     }
 })

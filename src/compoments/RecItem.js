@@ -55,7 +55,9 @@ export default class RecItem extends Component<{}> {
         return (
             <View style={styles.container}>
                 <TouchableHighlight
-                    onPress={this._onPressItem.bind(this)} >
+                    onPress={this._onPressItem.bind(this)}
+                    underlayColor={'null'}
+                >
                     <Image
                         source={{uri:this.props.picurl}}
                         style={styles.UserImage}
