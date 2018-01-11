@@ -13,6 +13,7 @@ import {
     Image,
     Button,
     Dimensions,
+    ScrollView,
     TouchableHighlight
 } from 'react-native'
 
@@ -38,6 +39,7 @@ export default class UserInfo extends Component<{}> {
             )
         }
         return (
+            <ScrollView>
             <View style={{width:'100%',height:400}}>
                 <Swiper
                     style={styles.wrapper}
@@ -64,6 +66,7 @@ export default class UserInfo extends Component<{}> {
                         />
                     </View>
                 </Swiper>
+
                 <View style={styles.backButton}>
                     <TouchableHighlight
                         onPress={()=>{
@@ -77,36 +80,73 @@ export default class UserInfo extends Component<{}> {
                         />
                     </TouchableHighlight>
                 </View>
-                <View style={styles.userInfoBase}>
-                    <View style={styles.userInfoBaseLeft}>
-                        <Image style={styles.headImage}
-                               source={{uri:'http://pic2.58.com/jiaoyou/yyw_img/212.jpg'}}
-                        />
-                    </View>
-                    <View style={styles.userInfoBaseCenter}>
-                        <Text style={styles.userInfoName}>欢欢乐乐过新年</Text>
-                        <View  style={styles.userInfoAddAndAge} >
-                            <Text style={styles.userInfoAdd}>苏州</Text>
-                            <Text style={styles.userInfoAge}>28岁</Text>
-                        </View>
-                    </View>
-
-                    <TouchableHighlight onPress={()=>{
-
-                    }}  underlayColor='rgba(0,0,0,0)'>
-                    <View style={styles.userInfoBaseRight} >
-                            <Image
-                                source={require('../images/online.png')}
-                                style={styles.onlineIcon}
+                    <View style={styles.userInfoBase}>
+                        <View style={styles.userInfoBaseLeft}>
+                            <Image style={styles.headImage}
+                                   source={{uri:'http://pic2.58.com/jiaoyou/yyw_img/212.jpg'}}
                             />
-                        <Text>查看是否在线</Text>
+                        </View>
+                        <View style={styles.userInfoBaseCenter}>
+                            <Text style={styles.userInfoName}>欢欢乐乐过新年</Text>
+                            <View  style={styles.userInfoAddAndAge} >
+                                <Text style={styles.userInfoAdd}>苏州</Text>
+                                <Text style={styles.userInfoAge}>28岁</Text>
+                            </View>
+                        </View>
+                        <TouchableHighlight onPress={()=>{
+                        }}  underlayColor='rgba(0,0,0,0)'>
+                            <View style={styles.userInfoBaseRight} >
+                                <Image
+                                    source={require('../images/online.png')}
+                                    style={styles.onlineIcon}
+                                />
+                                <Text>查看是否在线</Text>
+                            </View>
+                        </TouchableHighlight>
                     </View>
-                    </TouchableHighlight>
-
+                </View>
+                <View style={styles.userInfoHeartMsg}>
+                    <View style={styles.userInfoHeartMsgTitle}>
+                        <Image
+                            source={require('../images/heart.png')}
+                            style={styles.heartMsgIcon}
+                        />
+                        <Text style={styles.userInfoHeartMsgTitleText}>内心独白</Text>
+                    </View>
+                    <View>
+                        <Text  style={styles.userInfoHeartMsgContent}>
+                            我是一个容易受伤的女人，需要你来安慰一下我~~哈哈哈哈我是一个容易受伤的女人，需要你来安慰一下我~~哈哈哈哈我是一个容易受伤的女人，需要你来安慰一下我~~哈哈哈哈我是一个容易受伤的女人，需要你来安慰一下我~~哈哈哈哈
+                        </Text>
+                    </View>
+                </View>
+                <View style={styles.userInfoData}>
+                    <View style={styles.userInfoDataTitle}>
+                        <Image
+                            source={require('../images/data.png')}
+                            style={styles.dataIcon}
+                        />
+                        <Text style={styles.userInfoDataTitleText}>基本资料</Text>
+                    </View>
+                    <View style={styles.userInfoDataTagList}>
+                        <Text  style={styles.userInfoDataTag1}>
+                            160cm
+                        </Text>
+                        <Text style={styles.userInfoDataTag2} >
+                            不粘人
+                        </Text>
+                        <Text  style={styles.userInfoDataTag3}>
+                            技术型
+                        </Text>
+                        <Text style={styles.userInfoDataTag4} >
+                            狮子座
+                        </Text>
+                        <Text  style={styles.userInfoDataTag1}>
+                           本科
+                        </Text>
+                    </View>
                 </View>
 
-            </View>
-
+            </ScrollView>
         );
     }
 }
@@ -139,6 +179,7 @@ const styles=StyleSheet.create({
         left:10,
         padding:10,
         height:80  ,
+        zIndex:1000,
         backgroundColor:'#fff',
         borderRadius:5,
     },
@@ -202,5 +243,61 @@ const styles=StyleSheet.create({
     backButtonIcon:{
         width:30,
         height:20,
+    },
+    userInfoHeartMsg:{
+        width,
+        backgroundColor:'#fff'
+    },
+    userInfoHeartMsgTitle:{
+        flexDirection:'row',
+        height:50,
+        backgroundColor:'#f9f9f9',
+        alignItems:"center",
+    },
+    heartMsgIcon:{
+        width:30,
+        height:30,
+        margin:10,
+    },
+    userInfoHeartMsgTitleText:{
+        fontSize:16
+    },
+    userInfoHeartMsgContent:{
+        padding:10,
+        lineHeight:28
+    },
+    userInfoData:{
+        width,
+        backgroundColor:'#fff'
+    },
+    userInfoDataTitle:{
+        flexDirection:'row',
+        height:50,
+        backgroundColor:'#f9f9f9',
+        alignItems:"center",
+    },
+    dataIcon:{
+        width:30,
+        height:30,
+        margin:10,
+    },
+    userInfoDataTitleText:{
+        fontSize:16
+    },
+    userInfoDataTagList:{
+        flexDirection:'row',
+        padding:10,
+    },
+    userInfoDataTag1:{
+        paddingRight:7,paddingLeft:7,borderRadius:3,backgroundColor:'#31ca09',color:'#fff',marginRight:10,
+    },
+    userInfoDataTag2:{
+        paddingRight:7,paddingLeft:7,borderRadius:3,backgroundColor:'#1296db',color:'#fff',marginRight:10,
+    },
+    userInfoDataTag3:{
+        paddingRight:7,paddingLeft:7,borderRadius:3,backgroundColor:'#d4237a',color:'#fff',marginRight:10,
+    },
+    userInfoDataTag4:{
+        paddingRight:7,paddingLeft:7,borderRadius:3,backgroundColor:'#efb336',color:'#fff',marginRight:10,
     }
 })
