@@ -15,13 +15,19 @@ import {
     Dimensions,
     TouchableHighlight
 } from 'react-native'
+
 import Swiper from 'react-native-swiper'
+
+import PopupDialog from 'react-native-popup-dialog';
+
 const { width } = Dimensions.get('window')
 
 export default class UserInfo extends Component<{}> {
     static navigationOptions = ({navigation}) => ({
         header:null,
     })
+
+
     render() {
         const renderPagination = (index, total, context) => {
             return (
@@ -64,7 +70,7 @@ export default class UserInfo extends Component<{}> {
                         onPress={()=>{
                         this.props.navigation.goBack()
                         }}
-                        underlayColor={'null'}
+                        underlayColor='rgba(0,0,0,0)'
                     >
                         <Image
                             source={require('../images/back.png')}
@@ -79,12 +85,29 @@ export default class UserInfo extends Component<{}> {
                         />
                     </View>
                     <View style={styles.userInfoBaseCenter}>
-                        <Text style={styles.userInfoName}>123123</Text>
-                        <View  style={styles.userInfoAddress} >
+                        <Text style={styles.userInfoName}>欢欢乐乐过新年</Text>
+                        <View  style={styles.userInfoAddAndAge} >
+                            <Text style={styles.userInfoAdd}>苏州</Text>
+                            <Text style={styles.userInfoAge}>28岁</Text>
                         </View>
                     </View>
-                    <View style={styles.userInfoBaseRight}><Text>123123</Text></View>
+
+                    <TouchableHighlight onPress={()=>{
+                        this.popupDialog.show();
+                    }}  underlayColor='rgba(0,0,0,0)'>
+                    <View style={styles.userInfoBaseRight} >
+                            <Image
+                                source={require('../images/online.png')}
+                                style={styles.onlineIcon}
+                            />
+                        <Text>查看是否在线</Text>
+                    </View>
+                    </TouchableHighlight>
+                    <PopupDialog
+                        ref={(popupDialog) => { this.popupDialog = popupDialog; }}
+                    />
                 </View>
+
             </View>
 
         );
@@ -120,7 +143,7 @@ const styles=StyleSheet.create({
         padding:10,
         height:80  ,
         backgroundColor:'#fff',
-        borderRadius:5
+        borderRadius:5,
     },
     userInfoBaseLeft:{
         marginRight:10
@@ -128,8 +151,39 @@ const styles=StyleSheet.create({
     userInfoBaseCenter:{
         flex:1
     },
+    userInfoName:{
+        fontSize:16,
+        marginBottom:10,
+    },
+    userInfoAdd:{
+        backgroundColor:'#00CCFF',
+        color:'#fff',
+        paddingLeft:5,
+        paddingRight:5,
+        borderRadius:4
+    },
+    userInfoAge:{
+        backgroundColor:'#FF66CC',
+        marginLeft:10,
+        color:'#fff',
+        paddingLeft:5,
+        paddingRight:5,
+        borderRadius:4
+
+    },
+    userInfoAddAndAge:{
+        flexDirection:'row',
+    },
     userInfoBaseRight:{
-        flex:1
+        flexDirection:'row',
+        flex:1,
+        alignItems:"center",
+        justifyContent: 'center',
+
+    },
+    onlineIcon:{
+        width:20,
+        height:20
     },
     slide: {
        height:400,

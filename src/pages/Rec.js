@@ -45,7 +45,7 @@ import Search from './Search'
                     navigation.navigate('Search')
                     console.log(navigation)
                 }}
-                underlayColor={'null'}
+                underlayColor='rgba(0,0,0,0)'
             >
                 <Image
                     source={require('../images/search.png')}

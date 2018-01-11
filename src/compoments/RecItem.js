@@ -56,7 +56,7 @@ export default class RecItem extends Component<{}> {
             <View style={styles.container}>
                 <TouchableHighlight
                     onPress={this._onPressItem.bind(this)}
-                    underlayColor={'null'}
+                    underlayColor="rgba(0,0,0,0)"
                 >
                     <Image
                         source={{uri:this.props.picurl}}
@@ -69,7 +69,7 @@ export default class RecItem extends Component<{}> {
                         <Text style={styles.UserAddress}>{this.props.address}  {this.props.localtionnum}</Text>
                     </View>
                     <TouchableHighlight
-                        underlayColor="#fff"
+                        underlayColor="rgba(0,0,0,0)"
                         onPress={this._onPressButton.bind(this)}>
                         { buttomImage }
                     </TouchableHighlight>
