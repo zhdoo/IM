@@ -34,9 +34,6 @@ export default class Center extends Component<{}> {
                    我
                 </Text>
                 <Text style={styles.instructions}>
-                    左忆茹
-                </Text>
-                <Text style={styles.instructions}>
                     {instructions}
                 </Text>
             </View>

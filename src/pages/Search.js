@@ -29,9 +29,6 @@ export default class Search extends Component<{}> {
                    搜索
                 </Text>
                 <Text style={styles.instructions}>
-                    左忆茹
-                </Text>
-                <Text style={styles.instructions}>
                     {instructions}
                 </Text>
             </View>
