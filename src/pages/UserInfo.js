@@ -31,7 +31,7 @@ export default class UserInfo extends Component<{}> {
     constructor(props) {
         super(props);
         this.state = {
-            userId: 1,
+            userId: '11231',
         };
     }
 
