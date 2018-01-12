@@ -74,7 +74,7 @@ export default class RecItem extends Component<{}> {
                         { buttomImage }
                     </TouchableHighlight>
                 </View>
-                
+
             </View>
         );
     }

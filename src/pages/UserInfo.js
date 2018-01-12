@@ -20,13 +20,20 @@ import {
 import Swiper from 'react-native-swiper'
 
 
+import  FooterTab from '../compoments/FooterTab'
+
 const { width } = Dimensions.get('window')
 
 export default class UserInfo extends Component<{}> {
     static navigationOptions = ({navigation}) => ({
         header:null,
     })
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            userId: 1,
+        };
+    }
 
     render() {
         const renderPagination = (index, total, context) => {
@@ -39,6 +46,7 @@ export default class UserInfo extends Component<{}> {
             )
         }
         return (
+            <View style={{flex: 1}}>
             <ScrollView>
             <View style={{width:'100%',height:400}}>
                 <Swiper
@@ -79,6 +87,7 @@ export default class UserInfo extends Component<{}> {
                             style={styles.backButtonIcon}
                         />
                     </TouchableHighlight>
+                   <View> <Text>{this.state.userId}</Text></View>
                 </View>
                     <View style={styles.userInfoBase}>
                         <View style={styles.userInfoBaseLeft}>
@@ -145,13 +154,16 @@ export default class UserInfo extends Component<{}> {
                         </Text>
                     </View>
                 </View>
-
             </ScrollView>
+            <FooterTab userId={this.state.userId} />
+            </View>
+
         );
     }
 }
 
 const styles=StyleSheet.create({
+
     backButton:{
         position:'absolute',
         top:30,
