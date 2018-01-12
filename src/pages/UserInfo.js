@@ -31,10 +31,14 @@ export default class UserInfo extends Component<{}> {
     constructor(props) {
         super(props);
         this.state = {
-            userId: '11231',
+            userId: 1,
         };
     }
-
+    resetUserId(uid) {
+        this.setState({
+            userId:uid
+        });
+    }
     render() {
         const renderPagination = (index, total, context) => {
             return (
@@ -153,8 +157,12 @@ export default class UserInfo extends Component<{}> {
                         </Text>
                     </View>
                 </View>
+                <View>
+                    <Text>{this.state.userId}</Text>
+                </View>
             </ScrollView>
-            <FooterTab userId={this.state.userId} />
+
+            <FooterTab userId={this.state.userId} resetUserid={(userid) =>this.resetUserId(userid)} />
             </View>
 
         );
