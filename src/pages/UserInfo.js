@@ -87,7 +87,6 @@ export default class UserInfo extends Component<{}> {
                             style={styles.backButtonIcon}
                         />
                     </TouchableHighlight>
-                   <View> <Text>{this.state.userId}</Text></View>
                 </View>
                     <View style={styles.userInfoBase}>
                         <View style={styles.userInfoBaseLeft}>
