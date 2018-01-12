@@ -63,12 +63,12 @@ const styles = StyleSheet.create({
         width,
         flexDirection:'row',
         backgroundColor:'#fff',
-        borderTopColor:'#ccc',
+        borderTopColor:'#f0f0f0',
         borderTopWidth:1,
 
     },
     itemText:{
         fontSize:12,
-        marginTop:5
+        marginTop:5 
     }
 });
