@@ -264,7 +264,8 @@ const styles=StyleSheet.create({
     },
     userInfoHeartMsgContent:{
         padding:10,
-        lineHeight:28
+        lineHeight:22,
+        color:'#555'
     },
     userInfoData:{
         width,
@@ -289,15 +290,15 @@ const styles=StyleSheet.create({
         padding:10,
     },
     userInfoDataTag1:{
-        paddingRight:7,paddingLeft:7,borderRadius:3,backgroundColor:'#31ca09',color:'#fff',marginRight:10,
+        paddingRight:7,paddingLeft:7,borderRadius:5,backgroundColor:'#31ca09',color:'#fff',marginRight:10,
     },
     userInfoDataTag2:{
-        paddingRight:7,paddingLeft:7,borderRadius:3,backgroundColor:'#1296db',color:'#fff',marginRight:10,
+        paddingRight:7,paddingLeft:7,borderRadius:5,backgroundColor:'#1296db',color:'#fff',marginRight:10,
     },
     userInfoDataTag3:{
-        paddingRight:7,paddingLeft:7,borderRadius:3,backgroundColor:'#d4237a',color:'#fff',marginRight:10,
+        paddingRight:7,paddingLeft:7,borderRadius:5,backgroundColor:'#d4237a',color:'#fff',marginRight:10,
     },
     userInfoDataTag4:{
-        paddingRight:7,paddingLeft:7,borderRadius:3,backgroundColor:'#efb336',color:'#fff',marginRight:10,
+        paddingRight:7,paddingLeft:7,borderRadius:5,backgroundColor:'#efb336',color:'#fff',marginRight:10,
     }
 })
