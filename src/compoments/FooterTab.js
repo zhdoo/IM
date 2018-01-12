@@ -28,8 +28,6 @@ renderItem=(item,i)=>
             <Image style={{width:20,height:20}}  source={item.icon}/><Text>{item.title}</Text>
         </View>
     </TouchableHighlight>
-
-
 const FooterTab=()=>
     <View style={styles.bottomTab}>
         { details.map((item,i)=>renderItem(item,i))}
@@ -43,4 +41,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default FooterTab;
+export default FooterTab;       
