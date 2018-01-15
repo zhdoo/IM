@@ -569,7 +569,7 @@
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 687HH29YTU;
+						DevelopmentTeam = C394E2Q85H;
 					};
 				};
 			};
@@ -962,9 +962,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 687HH29YTU;
+				DEVELOPMENT_TEAM = C394E2Q85H;
 				INFOPLIST_FILE = IM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -973,7 +974,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zuoking.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zuoking11.com;
 				PRODUCT_NAME = IM;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -983,8 +984,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 687HH29YTU;
+				DEVELOPMENT_TEAM = C394E2Q85H;
 				INFOPLIST_FILE = IM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -993,7 +995,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zuoking.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zuoking11.com;
 				PRODUCT_NAME = IM;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

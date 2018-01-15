@@ -157,8 +157,137 @@ export default class UserInfo extends Component<{}> {
                         </Text>
                     </View>
                 </View>
-                <View>
-                    <Text>{this.state.userId}</Text>
+                <View style={styles.userInfoData}>
+                    <View style={styles.userInfoDataTitle}>
+                        <Image
+                            source={require('../images/call.png')}
+                            style={styles.dataIcon}
+                        />
+                        <Text style={styles.userInfoDataTitleText}>联系方式</Text>
+                    </View>
+                    <View style={styles.userInfoDataCallList}>
+                        <View  style={styles.userInfoDataCallItem}>
+                            <Text style={styles.userInfoDataCallItemTitle}>QQ</Text>
+                            <Text style={styles.userInfoDataCallItemContent}>***********</Text>
+                        </View>
+                        <View style={styles.userInfoDataCallItem} >
+                            <Text style={styles.userInfoDataCallItemTitle}>微信</Text>
+                            <Text style={styles.userInfoDataCallItemContent}>***********</Text>
+                        </View>
+                        <View  style={styles.userInfoDataCallItem}>
+                            <Text style={styles.userInfoDataCallItemTitle}>手机</Text>
+                            <Text style={styles.userInfoDataCallItemContent}>***********</Text>
+                        </View>
+                        <View style={styles.userInfoDataCallItem} >
+                            <Text style={styles.userInfoDataCallItemTitle}>地址</Text>
+                            <Text style={styles.userInfoDataCallItemContent}>***********</Text>
+                        </View>
+                    </View>
+                    <TouchableHighlight onPress={()=>{
+
+                    }} underlayColor='rgba(0,0,0,0)' >
+                        <View style={styles.userInfoDataCallFindBtn}><Text style={styles.userInfoDataCallFindBtnText}>点击查看（vip会员可见）</Text></View>
+                    </TouchableHighlight>
+                </View>
+
+                <View style={styles.userInfoData}>
+                    <View style={styles.userInfoDataTitle}>
+                        <Image
+                            source={require('../images/detail.png')}
+                            style={styles.dataIcon}
+                        />
+                        <Text style={styles.userInfoDataTitleText}>详细信息</Text>
+                    </View>
+                    <View style={styles.userInfoDataDetailList}>
+                        <View  style={styles.userInfoDataDetailItem}>
+                            <Text style={styles.userInfoDataDetailItemTitle}>血型</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>O型</Text>
+                        </View>
+                        <View style={styles.userInfoDataDetailItem} >
+                            <Text style={styles.userInfoDataDetailItemTitle}>兴趣爱好</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>上网，听音乐</Text>
+                        </View>
+                        <View  style={styles.userInfoDataDetailItem}>
+                            <Text style={styles.userInfoDataDetailItemTitle}>魅力部位</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>脸蛋</Text>
+                        </View>
+                        <View style={styles.userInfoDataDetailItem} >
+                            <Text style={styles.userInfoDataDetailItemTitle}>想要小孩</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>要小孩</Text>
+                        </View>
+                        <View style={styles.userInfoDataDetailItem} >
+                            <Text style={styles.userInfoDataDetailItemTitle}>个性特征</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>可爱</Text>
+                        </View>
+                        <View style={styles.userInfoDataDetailItem} >
+                            <Text style={styles.userInfoDataDetailItemTitle}>是否有房</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>租房</Text>
+                        </View>
+                        <View style={styles.userInfoDataDetailItem} >
+                            <Text style={styles.userInfoDataDetailItemTitle}>是否有车</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>没车</Text>
+                        </View>
+                        <View style={styles.userInfoDataDetailItem} >
+                            <Text style={styles.userInfoDataDetailItemTitle}>婚姻状况</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>未婚</Text>
+                        </View>
+                        <View style={styles.userInfoDataDetailItem} >
+                            <Text style={styles.userInfoDataDetailItemTitle}>喜欢异性的特征</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>外表帅气</Text>
+                        </View>
+                        <View style={styles.userInfoDataDetailItem} >
+                            <Text style={styles.userInfoDataDetailItemTitle}>是否接受异地恋</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>能</Text>
+                        </View>
+                        <View style={styles.userInfoDataDetailItem} >
+                            <Text style={styles.userInfoDataDetailItemTitle}>是否接受婚前性行为</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>能</Text>
+                        </View>
+                        <View style={styles.userInfoDataDetailItem} >
+                            <Text style={styles.userInfoDataDetailItemTitle}>是否愿意婚后与父母同住</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>愿意</Text>
+                        </View>
+                    </View>
+                </View>
+
+
+                <View style={styles.userInfoData}>
+                    <View style={styles.userInfoDataTitle}>
+                        <Image
+                            source={require('../images/term.png')}
+
+                            style={styles.dataIcon}
+                        />
+                        <Text style={styles.userInfoDataTitleText}>征友条件</Text>
+                    </View>
+                    <View style={styles.userInfoDataDetailList}>
+                        <View  style={styles.userInfoDataDetailItem}>
+                            <Text style={styles.userInfoDataDetailItemTitle}>居住条件</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>不限</Text>
+                        </View>
+                        <View style={styles.userInfoDataDetailItem} >
+                            <Text style={styles.userInfoDataDetailItemTitle}>年龄范围</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>不限-不限</Text>
+                        </View>
+                        <View  style={styles.userInfoDataDetailItem}>
+                            <Text style={styles.userInfoDataDetailItemTitle}>最低学历</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>不限</Text>
+                        </View>
+                        <View style={styles.userInfoDataDetailItem} >
+                            <Text style={styles.userInfoDataDetailItemTitle}>身高</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>不限</Text>
+                        </View>
+                        <View style={styles.userInfoDataDetailItem} >
+                            <Text style={styles.userInfoDataDetailItemTitle}>收入</Text>
+                            <Text style={styles.userInfoDataDetailItemContent}>不限</Text>
+                        </View>
+
+                    </View>
+                </View>
+
+                <View style={styles.userInfoDataButtomBtn}>
+                    <Text style={styles.userInfoDataDisabled}>拉黑</Text>
+                    <Text style={styles.userInfoDataDisabled}>举报</Text>
                 </View>
             </ScrollView>
 
@@ -309,15 +438,84 @@ const styles=StyleSheet.create({
         padding:10,
     },
     userInfoDataTag1:{
-        paddingRight:7,paddingLeft:7,borderRadius:5,backgroundColor:'#31ca09',color:'#fff',marginRight:10,
+        paddingRight:7,paddingLeft:7,backgroundColor:'#31ca09',color:'#fff',marginRight:10
     },
     userInfoDataTag2:{
-        paddingRight:7,paddingLeft:7,borderRadius:5,backgroundColor:'#1296db',color:'#fff',marginRight:10,
+        paddingRight:7,paddingLeft:7,backgroundColor:'#1296db',color:'#fff',marginRight:10,
     },
     userInfoDataTag3:{
-        paddingRight:7,paddingLeft:7,borderRadius:5,backgroundColor:'#d4237a',color:'#fff',marginRight:10,
+        paddingRight:7,paddingLeft:7,backgroundColor:'#d4237a',color:'#fff',marginRight:10,
     },
     userInfoDataTag4:{
-        paddingRight:7,paddingLeft:7,borderRadius:5,backgroundColor:'#efb336',color:'#fff',marginRight:10,
+        paddingRight:7,paddingLeft:7,backgroundColor:'#efb336',color:'#fff',marginRight:10,
+    },
+    userInfoDataCallList:{
+        width,
+
+    },
+    userInfoDataCallItem:{
+        flexDirection:'row',
+        alignItems:"center",
+
+    },
+    userInfoDataCallItemTitle:{
+        flex:0.2,
+        padding:7,
+        color:'#777',
+        paddingLeft:10
+
+    },
+    userInfoDataCallItemContent:{
+        flex:1,
+        color:'#777'
+    },
+    userInfoDataCallFindBtn:{
+        width:"80%",
+        height:40,
+        backgroundColor:'#1296db',
+        marginLeft:'10%',
+        marginTop:10,
+        marginBottom:10,
+        borderRadius:5,
+    },
+    userInfoDataCallFindBtnText:{
+        lineHeight:40,
+        width:"100%",
+        textAlign:"center",
+        color:'#fff'
+    },
+    userInfoDataDetailList:{
+        width,
+    },
+    userInfoDataDetailItem:{
+        flexDirection:'row',
+        alignItems:"center",
+    },
+    userInfoDataDetailItemTitle:{
+        flex:1,
+        padding:7,
+        color:'#777',
+        paddingLeft:10
+    },
+    userInfoDataDetailItemContent:{
+        flex:1,
+        color:'#777'
+    },
+    userInfoDataButtomBtn:{
+        width:"50%",
+        marginLeft:'25%',
+        flexDirection:'row',
+        alignItems:"center",
+        justifyContent: 'center',
+        marginTop:20,
+        marginBottom:10
+
+    },
+    userInfoDataDisabled:{
+        flex:1,
+        height:30,
+        textAlign:'center',
+        fontSize:16,
+        color:'#777'
     }
 })

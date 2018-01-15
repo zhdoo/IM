@@ -10,52 +10,57 @@ import {
     StyleSheet,
     Text,
     Image,
-    View
+    View,
+    Dimensions,
+    ScrollView
 } from 'react-native';
 
 
-const instructions = Platform.select({
-    ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-    android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu helleeeeeeeeeeeeeee',
-});
+const { width } = Dimensions.get('window')
 
 export default class Center extends Component<{}> {
     static navigationOptions = {
-        tabBarLabel: '我',
+        header: null,
         // Note: By default the icon is only shown on iOS. Search the showIcon option below.
 
     };
     render() {
         return (
-            <View style={styles.container}>
-                <Text style={styles.welcome}>
-                   我
-                </Text>
-                <Text style={styles.instructions}>
-                    {instructions}
-                </Text>
-            </View>
+            <ScrollView style={styles.centerTop}>
+                <Image source={require('../images/timg.jpeg')} style={{width,height:300}}/>
+                <View style={styles.centerMyInfo}>
+                    <Image source={require('../images/timg.jpeg')} style={styles.centerMyHeaderPic}/>
+                    <Text>我很帅的</Text>
+                    <Text>12321321</Text>
+                    <View>
+                        
+                    </View>
+                </View>
+            </ScrollView>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
+    centerTop:{
+        width,
+        height:300,
+        backgroundColor:'#ddd'
+    },
+    centerMyInfo:{
+        position:"absolute",
+        top:30,
+        width:"80%",
+        marginLeft:'10%',
+        height:250,
+        flexDirection:'column',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        // backgroundColor:"#000"
     },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
+    centerMyHeaderPic:{
+        width:80,
+        height:80,
+        backgroundColor:'red',
+        borderRadius:40,
+    }
 });
