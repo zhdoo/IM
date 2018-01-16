@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
         alignItems:'center',
         height:40,
         justifyContent:'center',
-        color:'#fff'
     },
     centerTopBtnItem1:{
         width:itemWidth-2,
@@ -123,7 +122,6 @@ const styles = StyleSheet.create({
         borderRightWidth:1,
         borderRightColor:"#fff",
         justifyContent:'center',
-        color:'#fff'
     },
     centerImages:{
         width,

@@ -69,6 +69,7 @@ const Home = TabNavigator({
         swipeEnabled:false,
         animationEnabled: false,
         tabBarPosition:'bottom',
+        initialRouteName:'Found',
         tabBarOptions:{
             activeTintColor: '#d4237a',
             inactiveTintColor:'#777',

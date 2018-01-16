@@ -10,29 +10,41 @@ import {
     StyleSheet,
     Text,
     View,
-    Image
+    Image,
+    Animated,
+    Easing,
+    LayoutAnimation
 } from 'react-native';
-
-
-const instructions = Platform.select({
-    ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-    android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu helleeeeeeeeeeeeeee',
-});
+LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
 
 export default class Found extends Component<{}> {
+    constructor(props) {
+        super(props);
+        this.state = {
+            fadeAnim: new Animated.Value(0),          // 透明度初始值设为0
+        };
+    }
+    componentDidMount() {
+            Animated.timing(                            // 随时间变化而执行的动画类型
+                this.state.fadeAnim,                      // 动画中的变量值
+                {
+                    toValue: 1, // 目标值
+                    duration: 2500, // 动画时间
+                    easing: Easing.linear // 缓动函数
+                }
+            ).start();                                  // 开始执行动画
+
+    }
     render() {
         return (
-            <View style={styles.container}>
-                <Text style={styles.welcome}>
-                   发现
-                </Text>
-
-                <Text style={styles.instructions}>
-                    {instructions}
-                </Text>
-            </View>
+            <Animated.View                            // 可动画化的视图组件
+                style={{
+                    width: 250, height: 50, backgroundColor: 'powderblue',
+                    opacity: this.state.fadeAnim,          // 将透明度指定为动画变量值
+                }}
+            >
+                <Text style={{fontSize: 28, textAlign: 'center', margin: 10}}>Fading in</Text>
+            </Animated.View>
         );
     }
 }
