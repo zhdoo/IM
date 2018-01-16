@@ -17,7 +17,7 @@ import {
 
 
 const { width} = Dimensions.get('window')
-const itemWidth=Dimensions.get('window')/3-2
+const itemWidth=Dimensions.get('window').width/3
 export default class Center extends Component<{}> {
     static navigationOptions = {
         header: null,
@@ -26,16 +26,24 @@ export default class Center extends Component<{}> {
     };
     render() {
         return (
-            <ScrollView style={styles.centerTop}>
-                <Image source={require('../images/timg.jpeg')} style={{width,height:300,opacity:0.2,backgroundColor:'#fff'}}/>
-                <View style={styles.centerMyInfo}>
-                    <Image source={require('../images/timg.jpeg')} style={styles.centerMyHeaderPic}/>
-                    <Text style={styles.centerMyNickname}>我很帅的</Text>
-                    <Text style={styles.centerMyId}>12321321</Text>
-                    <View  style={styles.centerTopBtn} >
-                        <View style={styles.centerTopBtnItem}><Text>1</Text></View>
-                        <View style={styles.centerTopBtnItem,{backgroundColor:'#000'}}><Text>2</Text></View>
-                        <View style={styles.centerTopBtnItem}><Text>3</Text></View>
+            <ScrollView style={{backgroundColor:'#f3f3f3'}}>
+                <View  style={styles.centerTop}>
+                    <Image source={require('../images/timg.jpeg')} style={{width,height:300,opacity:0.4,backgroundColor:'#fff'}}/>
+                    <View style={styles.centerMyInfo}>
+                        <Image source={require('../images/timg.jpeg')} style={styles.centerMyHeaderPic}/>
+                        <Text style={styles.centerMyNickname}>我很帅的</Text>
+                        <Text style={{color:'#fff'}}>12321321</Text>
+                        <View  style={styles.centerTopBtn} >
+                            <View style={styles.centerTopBtnItem}><Text style={{color:'#fff'}}>0</Text><Text style={{color:'#fff'}}>动态</Text></View>
+                            <View style={styles.centerTopBtnItem1}><Text style={{color:'#fff'}}>2</Text><Text style={{color:'#fff'}}>关注</Text></View>
+                            <View style={styles.centerTopBtnItem}><Text style={{color:'#fff'}}>3</Text><Text style={{color:'#fff'}}>谁看过我</Text></View>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.centerImageList}>
+                    <View style={styles.centerImageUpload}>
+                        <Text style={{fontSize:30}}>+</Text>
+                        <Text style={{fontSize:12}}>上传图片</Text>
                     </View>
                 </View>
             </ScrollView>
@@ -44,17 +52,35 @@ export default class Center extends Component<{}> {
 }
 
 const styles = StyleSheet.create({
+
+    centerImageList:{
+        flexDirection:'row',
+        backgroundColor:"#fff",
+        marginTop:5
+    }
+    ,
+    centerImageUpload:{
+        width:70,
+        margin:5,
+        height:70,
+        marginLeft:10,
+        borderWidth:1,
+        borderColor:"#ddd",
+        alignItems: 'center',
+        justifyContent:'center',
+
+    },
     centerTop:{
         width,
-        height:300,
-        backgroundColor:'#ddd'
+        height:250,
+        backgroundColor:'#000'
     },
     centerMyInfo:{
         position:"absolute",
         top:30,
         width:"80%",
         marginLeft:'10%',
-        height:250,
+        height:200,
         flexDirection:'column',
         alignItems: 'center',
         // backgroundColor:"#000"
@@ -63,7 +89,7 @@ const styles = StyleSheet.create({
         width:80,
         height:80,
         borderRadius:40,
-        marginBottom:30,
+        marginBottom:20,
         borderWidth:2,
         borderColor:'#fff'
     },
@@ -72,12 +98,37 @@ const styles = StyleSheet.create({
         height:30,
         lineHeight:30,
         textAlign:'center',
+        color:'#fff'
     },
+
     centerTopBtn:{
          flexDirection:'row',
+        position:"absolute",
+        top:170,
+        height:40
     },
     centerTopBtnItem:{
         width:itemWidth,
-        alignItems:'center',    
+        alignItems:'center',
+        height:40,
+        justifyContent:'center',
+        color:'#fff'
+    },
+    centerTopBtnItem1:{
+        width:itemWidth-2,
+        alignItems:'center',
+        height:40,
+        borderLeftWidth:1,
+        borderLeftColor:"#fff",
+        borderRightWidth:1,
+        borderRightColor:"#fff",
+        justifyContent:'center',
+        color:'#fff'
+    },
+    centerImages:{
+        width,
+        height:80,
+        backgroundColor:'#fff',
+        marginTop:5
     }
 });

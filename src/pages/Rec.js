@@ -81,7 +81,7 @@ import Search from './Search'
 
 const  styles=StyleSheet.create({
     HomeMain:{
-        backgroundColor:'#ddd',
+        backgroundColor:'#f3f3f3',
     }
 })
 
