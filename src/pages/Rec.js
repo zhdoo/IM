@@ -14,8 +14,6 @@ import {
     TouchableHighlight,
 } from 'react-native';
 
-
-
 import RecItem from '../compoments/RecItem'
 import Search from './Search'
  class RecScreen extends Component<{}> {
@@ -74,10 +72,6 @@ import Search from './Search'
         );
     }
 }
-
-
-
-
 
 const  styles=StyleSheet.create({
     HomeMain:{
