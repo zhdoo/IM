@@ -42,6 +42,7 @@ const Home = TabNavigator({
             screen: Found,
             navigationOptions:{
                 tabBarLabel: '发现',
+
                 tabBarIcon: ({ tintColor }) => (
                     <Image
                         source={require('../images/found.png')}
@@ -69,7 +70,8 @@ const Home = TabNavigator({
         swipeEnabled:false,
         animationEnabled: false,
         tabBarPosition:'bottom',
-        initialRouteName:'Found',
+        initialRouteName:'Rec',
+        
         tabBarOptions:{
             activeTintColor: '#d4237a',
             inactiveTintColor:'#777',

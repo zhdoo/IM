@@ -14,6 +14,7 @@ import {
     Button,
     Dimensions,
     ScrollView,
+    StatusBar,
     TouchableHighlight
 } from 'react-native'
 
@@ -51,6 +52,9 @@ export default class UserInfo extends Component<{}> {
         }
         return (
             <View style={{flex: 1}}>
+                <StatusBar
+                    barStyle="dark-content"
+                />
             <ScrollView>
             <View style={{width:'100%',height:400}}>
                 <Swiper

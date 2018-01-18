@@ -14,7 +14,8 @@ import {
     Animated,
     Easing,
     TouchableHighlight,
-    Dimensions
+    Dimensions,
+    StatusBar
 } from 'react-native';
 
 const itemWidth=Dimensions.get('window').width
@@ -28,21 +29,41 @@ export default class Found extends Component<{}> {
     constructor(props) {
         super(props);
         this.state = {
-            userList:[
-                {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/207.jpg',top:itemHeight-200,left:itemWidth-80},
-                {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/207.jpg',top:itemHeight-300,left:itemWidth-180},
-                {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/207.jpg',top:itemHeight-40,left:itemWidth-280},
+            userList:[],
+            list:[
+                {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/213.jpg',top:itemHeight-350,left:itemWidth-80},
+                {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/210.jpg',top:itemHeight-300,left:itemWidth-180},
+                {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/211.jpg',top:itemHeight-350,left:itemWidth-280},
                 {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/207.jpg',top:160,left:70},
-                {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/207.jpg',top:itemHeight-250,left:itemWidth-220},
-                {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/207.jpg',top:160,left:140},
+                {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/212.jpg',top:itemHeight-250,left:itemWidth-220},
+                {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/201.jpg',top:160,left:140},
             ],
             bounceValue: new Animated.Value(1), //你可以改变这个值看
 //看效果是什么
             rotateValue: new Animated.Value(0),//旋转角度的初始值
         };
     }
+    componentWillMount(){
+        console.log(123)
+    }
     componentDidMount() {
         this.startAnimation();
+        var i=0
+        var addUserList=setInterval(() =>{
+            var userList=this.state.userList
+            console.log(this.state.list[i])
+            userList.push(this.state.list[i])
+            console.log(userList)
+            this.setState({
+                userList:userList
+            })
+            i++;
+            if(i>this.state.list.length-1){
+                console.log('end')
+                clearInterval(addUserList)
+            }
+        },1000)
+
     }
     startAnimation() {
         this.state.bounceValue.setValue(1);//和上面初始值一样，所以
@@ -57,17 +78,15 @@ export default class Found extends Component<{}> {
             }),
             Animated.timing(this.state.rotateValue, {
                 toValue: 1,  //角度从0变1
-                duration: 15000,  //从0到1的时间
+                duration: 5000,  //从0到1的时间
                 easing: Easing.out(Easing.linear),//线性变化，匀速旋转
             }),
             //调用start启动动画,start可以回调一个函数,从而实现动画循环
         ]).start(()=>this.startAnimation());
     }
     renderItem(item, i) {
-        let randTop=itemHeight/Math.floor(Math.random()*10)
-        let randLeft=itemWidth/Math.floor(Math.random()*10)
         return <TouchableHighlight key={i} onPress={this._onPressBtn.bind(this,i)} style={{position:"absolute",top:item.top,left:item.left,zIndex:10000}}   underlayColor="rgba(0,0,0,0)">
-                <Image style={{width: 50, height: 50,borderRadius:25}} source={{uri:item.picurl}}/>
+                <Image style={{width: 50, height: 50,borderRadius:25,borderWidth:2,borderColor:'#fff'}} source={{uri:item.picurl}}/>
         </TouchableHighlight>
     }
     _onPressBtn(){
@@ -75,8 +94,11 @@ export default class Found extends Component<{}> {
     }
     render() {
         return (
-            <View style={styles.container}>
 
+            <View style={styles.container}>
+                <StatusBar
+                    barStyle="light-content"
+                />
                 <Image source={require('../images/start.jpg')}/>
                 {this.state.userList.map((item, i) =>this.renderItem(item, i))}
                 <Animated.Image source={require('../images/leida.png')}

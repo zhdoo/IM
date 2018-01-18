@@ -10,7 +10,8 @@ import {
     StyleSheet,
     Text,
     View,
-    Image
+    Image,
+    StatusBar
 } from 'react-native';
 
 
@@ -25,6 +26,9 @@ export default class Search extends Component<{}> {
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar
+                    barStyle="dark-content"
+                />
                 <Text style={styles.welcome}>
                    搜索
                 </Text>

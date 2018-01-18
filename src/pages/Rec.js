@@ -10,6 +10,7 @@ import {
     View,
     Image,
     Text,
+    StatusBar,
     FlatList,
     TouchableHighlight,
 } from 'react-native';
@@ -32,8 +33,11 @@ import Search from './Search'
     }
     static navigationOptions = ({navigation}) => ({
         title: '推荐',
-        titleStyle:{
-            backgroundColor:'#c51a26',
+        headerStyle:{
+            backgroundColor:'#FF66CC',
+        },
+        headerTitleStyle:{
+          color:'#fff'
         },
         headerRight:
             <View>
@@ -47,7 +51,7 @@ import Search from './Search'
             >
                 <Image
                     source={require('../images/search.png')}
-                    style={{width:18,height:18,marginRight:6,marginTop:6}}
+                    style={{width:24,height:24,marginRight:3,marginTop:3}}
                 />
             </TouchableHighlight>
         </View>
@@ -59,6 +63,11 @@ import Search from './Search'
      }
     render() {
         return (
+            <View>
+            <StatusBar
+                barStyle="light-content"
+            />
+
             <FlatList
                 style={styles.HomeMain}
                 numColumns={2}
@@ -69,6 +78,7 @@ import Search from './Search'
                 }}
                 renderItem={({item}) => <RecItem  address={item.address} localtionnum={item.locationnum} name={item.name} picurl={item.picurl} isClick={item.isClick} onPressItem={this._onPress.bind(this)} />}
             />
+            </View>
         );
     }
 }
