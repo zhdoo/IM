@@ -65,13 +65,12 @@ const Home = TabNavigator({
         },
 
     },
-
     {
         swipeEnabled:false,
         animationEnabled: false,
         tabBarPosition:'bottom',
         initialRouteName:'Rec',
-        
+        lazy:true,
         tabBarOptions:{
             activeTintColor: '#d4237a',
             inactiveTintColor:'#777',
@@ -98,12 +97,10 @@ const Home = TabNavigator({
 
 
 const styles = StyleSheet.create({
-
     icon: {
         width: 26,
         height: 26,
     },
-
 });
 
 

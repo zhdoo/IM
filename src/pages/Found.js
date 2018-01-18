@@ -24,7 +24,6 @@ export default class Found extends Component<{}> {
     static navigationOptions = {
         header: null,
         // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-
     };
     constructor(props) {
         super(props);
@@ -43,11 +42,14 @@ export default class Found extends Component<{}> {
             rotateValue: new Animated.Value(0),//旋转角度的初始值
         };
     }
-    componentWillMount(){
-        console.log(123)
-    }
+
     componentDidMount() {
         this.startAnimation();
+        this._setUserList()
+    }
+
+
+    _setUserList(){
         var i=0
         var addUserList=setInterval(() =>{
             var userList=this.state.userList
@@ -63,7 +65,6 @@ export default class Found extends Component<{}> {
                 clearInterval(addUserList)
             }
         },1000)
-
     }
     startAnimation() {
         this.state.bounceValue.setValue(1);//和上面初始值一样，所以
@@ -86,19 +87,28 @@ export default class Found extends Component<{}> {
     }
     renderItem(item, i) {
         return <TouchableHighlight key={i} onPress={this._onPressBtn.bind(this,i)} style={{position:"absolute",top:item.top,left:item.left,zIndex:10000}}   underlayColor="rgba(0,0,0,0)">
-                <Image style={{width: 50, height: 50,borderRadius:25,borderWidth:2,borderColor:'#fff'}} source={{uri:item.picurl}}/>
+            <Image style={{width: 50, height: 50,borderRadius:25,borderWidth:2,borderColor:'#fff'}} source={{uri:item.picurl}}/>
         </TouchableHighlight>
     }
     _onPressBtn(){
 
     }
     render() {
+        console.log(123)
         return (
-
             <View style={styles.container}>
                 <StatusBar
                     barStyle="light-content"
                 />
+                <TouchableHighlight onPress={()=>{
+                    this.setState({
+                        userList:[]
+                    })
+                    this._setUserList()
+                }}  style={{width:30,height:30,padding:5,borderRadius:20,backgroundColor:"#000",opacity:0.6,position:'absolute',top:30,right:20,zIndex:10000}}>
+                    <Image source={require('../images/refresh.png')} style={{width:'100%',height:'100%'}}/>
+                </TouchableHighlight>
+
                 <Image source={require('../images/start.jpg')}/>
                 {this.state.userList.map((item, i) =>this.renderItem(item, i))}
                 <Animated.Image source={require('../images/leida.png')}
