@@ -18,6 +18,10 @@ import {
     StatusBar
 } from 'react-native';
 
+
+import * as Animatable from 'react-native-animatable';
+
+
 const itemWidth=Dimensions.get('window').width
 const itemHeight=Dimensions.get('window').height
 export default class Found extends Component<{}> {
@@ -28,14 +32,15 @@ export default class Found extends Component<{}> {
     constructor(props) {
         super(props);
         this.state = {
+            showUserInfo:false,
             userList:[],
             list:[
-                {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/213.jpg',top:itemHeight-350,left:itemWidth-80},
-                {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/210.jpg',top:itemHeight-300,left:itemWidth-180},
-                {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/211.jpg',top:itemHeight-350,left:itemWidth-280},
-                {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/207.jpg',top:160,left:70},
-                {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/212.jpg',top:itemHeight-250,left:itemWidth-220},
-                {id:1,title:'打招呼',picurl:'http://pic2.58.com/jiaoyou/yyw_img/201.jpg',top:160,left:140},
+                {id:1,name:'打招呼',age:22,discription:'我是一个容易大叔大婶大所大所',picurl:'http://pic2.58.com/jiaoyou/yyw_img/213.jpg',top:itemHeight-350,left:itemWidth-80},
+                {id:1,name:'打招呼',age:22,discription:'我是一个容易大叔大婶大所大所',picurl:'http://pic2.58.com/jiaoyou/yyw_img/210.jpg',top:itemHeight-300,left:itemWidth-180},
+                {id:1,name:'打招呼',age:22,discription:'我是一个容易大叔大婶大所大所',picurl:'http://pic2.58.com/jiaoyou/yyw_img/211.jpg',top:itemHeight-350,left:itemWidth-280},
+                {id:1,name:'打招呼',age:22,discription:'我是一个容易大叔大婶大所大所',picurl:'http://pic2.58.com/jiaoyou/yyw_img/207.jpg',top:160,left:70},
+                {id:1,name:'打招呼',age:22,discription:'我是一个容易大叔大婶大所大所',picurl:'http://pic2.58.com/jiaoyou/yyw_img/212.jpg',top:itemHeight-250,left:itemWidth-220},
+                {id:1,name:'打招呼',age:22,discription:'我是一个容易大叔大婶大所大所',picurl:'http://pic2.58.com/jiaoyou/yyw_img/201.jpg',top:160,left:140},
             ],
             bounceValue: new Animated.Value(1), //你可以改变这个值看
 //看效果是什么
@@ -47,24 +52,32 @@ export default class Found extends Component<{}> {
         this.startAnimation();
         this._setUserList()
     }
-
-
     _setUserList(){
-        var i=0
-        var addUserList=setInterval(() =>{
-            var userList=this.state.userList
-            console.log(this.state.list[i])
+        let i=0
+        let addUserList=setInterval(() =>{
+            let userList=this.state.userList
+
             userList.push(this.state.list[i])
-            console.log(userList)
+
             this.setState({
                 userList:userList
             })
             i++;
             if(i>this.state.list.length-1){
-                console.log('end')
                 clearInterval(addUserList)
             }
         },1000)
+    }
+    userInfo(){
+        return(
+            <View style={styles.userInfoMain}>
+                <View style={styles.userInfoCover}>
+
+                </View>
+                <View style={styles.userInfoContent}>
+                <Image source={{uri:'http://pic2.58.com/jiaoyou/yyw_img/213.jpg'}} style={styles.userInfoImage}/>
+                </View>
+            </View>)
     }
     startAnimation() {
         this.state.bounceValue.setValue(1);//和上面初始值一样，所以
@@ -90,13 +103,17 @@ export default class Found extends Component<{}> {
             <Image style={{width: 50, height: 50,borderRadius:25,borderWidth:2,borderColor:'#fff'}} source={{uri:item.picurl}}/>
         </TouchableHighlight>
     }
-    _onPressBtn(){
-
+    _onPressBtn(i){
+        let showOrHide=this.state.showUserInfo?false:true
+        this.setState({
+            showUserInfo:showOrHide
+        })
     }
     render() {
-        console.log(123)
+        let userInfo = this.state.showUserInfo ?  this.userInfo() : null;    // 菜单
         return (
             <View style={styles.container}>
+                {userInfo}
                 <StatusBar
                     barStyle="light-content"
                 />
@@ -105,10 +122,9 @@ export default class Found extends Component<{}> {
                         userList:[]
                     })
                     this._setUserList()
-                }}  style={{width:30,height:30,padding:5,borderRadius:20,backgroundColor:"#000",opacity:0.6,position:'absolute',top:30,right:20,zIndex:10000}}>
+                }}  style={styles.refreshBtn}>
                     <Image source={require('../images/refresh.png')} style={{width:'100%',height:'100%'}}/>
                 </TouchableHighlight>
-
                 <Image source={require('../images/start.jpg')}/>
                 {this.state.userList.map((item, i) =>this.renderItem(item, i))}
                 <Animated.Image source={require('../images/leida.png')}
@@ -140,7 +156,35 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
     },
-    leidaImage: {
+    refreshBtn: {
+        width:40,height:40,padding:5,borderRadius:20,backgroundColor:"#000",opacity:0.6,position:'absolute',top:30,right:20,zIndex:10000
+    },
+    userInfoCover:{
+        width:itemHeight,
+        height:itemHeight,
+        position:'absolute',
+        top:0,
+        zIndex:100,
+        backgroundColor:'#000',
+        opacity:0.6
+    },
+    userInfoMain:{
+        width:itemWidth,
+        height:itemHeight,
+        position:'absolute',
+        top:0,
+        zIndex:1000000,
+    },
+    userInfoContent:{
+        width:200,
+        height:300,
+        position:'absolute',
+        left:(itemWidth-200)/2,
+        top:(itemHeight-300)/2,
+        zIndex:1000
+    },
+    userInfoImage:{
+        width:'80%',
 
     }
 });
