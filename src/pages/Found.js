@@ -15,7 +15,8 @@ import {
     Easing,
     TouchableHighlight,
     Dimensions,
-    StatusBar
+    StatusBar,
+    Alert,
 } from 'react-native';
 
 
@@ -72,10 +73,37 @@ export default class Found extends Component<{}> {
         return(
             <View style={styles.userInfoMain}>
                 <View style={styles.userInfoCover}>
-
                 </View>
                 <View style={styles.userInfoContent}>
                 <Image source={{uri:'http://pic2.58.com/jiaoyou/yyw_img/213.jpg'}} style={styles.userInfoImage}/>
+                    <View style={styles.userChooseLikeInfo}>
+                        <Text>aaaaa</Text>
+                        <View style={[styles.userChooseLikeInfoTag,{marginTop:5}]}>
+                            <Text style={{padding:3,backgroundColor:'#d4237a',color:'#fff',fontSize:10,marginRight:5}}>25岁</Text>
+                            <Text style={{padding:3,backgroundColor:'#1296db',color:'#fff',fontSize:10,marginRight:5}}>天蝎座</Text>
+
+                        </View>
+                        <Text style={{fontSize:12,color:"#777",marginTop:5}}>4km</Text>
+                    </View>
+                    <View style={styles.userChooseLike}>
+                        <TouchableHighlight style={styles.userChooseLikeBtn} onPress={()=>{
+                            this.setState({
+                                showUserInfo:false
+                            })
+                        }}
+                                            underlayColor='rgba(0,0,0,0)'>
+                            <Image source={require('../images/dislike.png')} style={styles.userChooseLikeIcon}/>
+                        </TouchableHighlight>
+                        <TouchableHighlight style={styles.userChooseLikeBtn} onPress={()=>{
+                            Alert.alert('打招呼成功')
+                            this.setState({
+                                showUserInfo:false
+                            })
+                        }}
+                                            underlayColor='rgba(0,0,0,0)'>
+                            <Image source={require('../images/like.png')} style={styles.userChooseLikeIcon}/>
+                        </TouchableHighlight>
+                    </View>
                 </View>
             </View>)
     }
@@ -175,16 +203,40 @@ const styles = StyleSheet.create({
         top:0,
         zIndex:1000000,
     },
+    userChooseLikeInfo:{
+        backgroundColor:"#fff",
+        padding:5
+    },
+    userChooseLikeInfoTag:{
+        flexDirection:'row',
+    },
     userInfoContent:{
         width:200,
-        height:300,
         position:'absolute',
         left:(itemWidth-200)/2,
         top:(itemHeight-300)/2,
-        zIndex:1000
+        zIndex:1000,
     },
     userInfoImage:{
-        width:'80%',
+        width:200,
+        height:200
+    },
+    userChooseLike:{
+        flexDirection:'row',
+        width:200,
+        height:50,
+        backgroundColor:'#f3f3f3',
+        alignItems:'center',
 
+
+    },
+    userChooseLikeBtn:{
+        flex:1,
+        // backgroundColor:'#FF0000',
+        textAlign:'center'
+    },
+    userChooseLikeIcon:{
+        width:40,height:40,
+        marginLeft:30
     }
 });

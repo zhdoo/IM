@@ -31,7 +31,7 @@ export default class RecItem extends Component<{}> {
                isClick:true
            })
         Alert.alert(
-            'Alert Title'
+            '打招呼成功'
         )
     }
     _onPressItem(){
