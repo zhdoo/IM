@@ -12,11 +12,13 @@ import {
     Text,
     StatusBar,
     FlatList,
-    TouchableHighlight,
+    TouchableHighlight, Dimensions,
 } from 'react-native';
 
 import RecItem from '../compoments/RecItem'
 import Search from './Search'
+const height=Dimensions.get('window').height
+import Toast, {DURATION} from 'react-native-easy-toast'
  class RecScreen extends Component<{}> {
     constructor(props) {
         super(props);
@@ -61,6 +63,9 @@ import Search from './Search'
          console.log(this.props)
          this.props.navigation.navigate('UserInfo')
      }
+     onPressHi(){
+         this.refs.toast.show('打招呼成功!',DURATION.LENGTH_LONG);
+     }
     render() {
         return (
             <View>
@@ -76,8 +81,15 @@ import Search from './Search'
                 onRefresh={()=>{
                     console.log(123)
                 }}
-                renderItem={({item}) => <RecItem  address={item.address} localtionnum={item.locationnum} name={item.name} picurl={item.picurl} isClick={item.isClick} onPressItem={this._onPress.bind(this)} />}
+                renderItem={({item}) => <RecItem  address={item.address} localtionnum={item.locationnum} toastInfo={this.onPressHi.bind(this)} name={item.name} picurl={item.picurl} isClick={item.isClick} onPressItem={this._onPress.bind(this)} />}
             />
+                <Toast ref="toast"
+                       position='top'
+                       positionValue={height/3}
+
+                       fadeInDuration={500}
+                       fadeOutDuration={500}
+                       opacity={0.8}/>
             </View>
         );
     }

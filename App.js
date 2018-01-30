@@ -4,6 +4,9 @@ import { StackNavigator } from "react-navigation";
 import Home from './src/pages/Home'
 import Search from './src/pages/Search'
 import UserInfo from './src/pages/UserInfo'
+import SpecilServe from './src/pages/SpecilServe'
+import ChengXin from './src/pages/ChengXin'
+import ChatWindow from './src/pages/ChatWindow'
 
 const App = StackNavigator({
     Home: {
@@ -14,6 +17,16 @@ const App = StackNavigator({
     },
     UserInfo: {
         screen: UserInfo,
+    },
+    SpecilServe: {
+        screen: SpecilServe,
+    },
+    ChengXin: {
+        screen: ChengXin,
+    }
+    ,
+    ChatWindow: {
+        screen: ChatWindow,
     }
 
 

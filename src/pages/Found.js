@@ -153,7 +153,7 @@ export default class Found extends Component<{}> {
                 }}  style={styles.refreshBtn}>
                     <Image source={require('../images/refresh.png')} style={{width:'100%',height:'100%'}}/>
                 </TouchableHighlight>
-                <Image source={require('../images/start.jpg')}/>
+                <Image source={require('../images/start.jpg')} style={{width:'100%',height:'100%'}}/>
                 {this.state.userList.map((item, i) =>this.renderItem(item, i))}
                 <Animated.Image source={require('../images/leida.png')}
                                 style={{

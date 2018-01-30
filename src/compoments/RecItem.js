@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 var itemWidth=(Dimensions.get('window').width-15)/2;
 
+import Toast, {DURATION} from 'react-native-easy-toast'
 export default class RecItem extends Component<{}> {
     constructor(props) {
         super(props);  // 初始状态
@@ -30,9 +31,10 @@ export default class RecItem extends Component<{}> {
         this.setState({
                isClick:true
            })
-        Alert.alert(
-            '打招呼成功'
-        )
+        if(!this.state.isClick){
+            this.props.toastInfo()
+        }
+
     }
     _onPressItem(){
            this.props.onPressItem();
@@ -74,7 +76,7 @@ export default class RecItem extends Component<{}> {
                         { buttomImage }
                     </TouchableHighlight>
                 </View>
-
+                <Toast ref="toast"/>
             </View>
         );
     }
