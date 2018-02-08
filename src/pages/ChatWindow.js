@@ -1,18 +1,12 @@
 import React, {Component} from 'react';
 import ReactNative, {
-    AppRegistry,
     StyleSheet,
-    Text,
     View,
+    Text,
     Image,
     TextInput,
-    Dimensions,
-    Platform,
-    TouchableOpacity,
-    ScrollView,
     TouchableHighlight,
-
-
+    KeyboardAvoidingView
 
 } from 'react-native';
 
@@ -29,17 +23,18 @@ export  default  class ChatWindow extends React.Component {
         headerStyle:{
             backgroundColor:'#FF66CC',
         },
-
+        text:'请输入点什么吧',
         inputMenu:'default',
         headerTintColor:"#fff",
-        showTool:false
+        showTool:false,
+        toolBarHeight:50
     })
 
     componentWillMount() {
         this.setState({
             userId:1,
             typingText: null,
-            msgText:'123',
+            msgText:'',
             userInfo:{
                 _id: 1,
                 name: 'React Native',
@@ -71,98 +66,111 @@ export  default  class ChatWindow extends React.Component {
     }
 
     onSend(messages = []) {
-        let messagesList=this.state.messages
+        if(this.state.text!=''){
+            this.setState(previousState => ({
+                messages: GiftedChat.append(previousState.messages, messages),
+            }))
+        }
 
-        let nowMsg= {
-                _id: messagesList.length+1,
-                text: this.state.msgText,
-                createdAt: new Date(),
-                user: this.state.userInfo
-            }
-            messagesList.push(nowMsg)
         this.setState({
-            messages: GiftedChat.append(messagesList, messages),
+            text:''
         })
     }
 
 
+    changeContent = (event)=> {
+
+        this.setState({
+            text: event.nativeEvent.text,
+        });
+    }
+    renderToolBar(){
+        if(this.state.showTool){
+            return (<View style={styles.footerContainer}>
+                <Text style={styles.footerText}>
+                    1
+                </Text>
+            </View>)
+        }
+        return null;
+    }
+
+    setRightMenu(){
+        this.refs.TextInput.blur();
+        let showOrHide=this.state.showTool?false:true
+        this.setState({
+            toolBarHeight:200,
+            showTool:showOrHide
+        })
+    }
 
     render() {
         return (
+
             <GiftedChat
-                messages={this.state.messages}
-                user={this.state.userInfo}
-                renderInputToolbar={(messages)=>{
-                    return(
-                        <View style={styles.inputToolBar}>
-                            <TouchableHighlight onPress={()=>{
-                                let showOrHide=this.state.showTool?false:true
-                                this.setState({
-                                    showTool:showOrHide
-                                })
-                            }}><Image source={require('../images/help.png')} style={{width:40,height:40}}/></TouchableHighlight>
-                            <TextInput
-                                style={{height:20,flex:1,paddingLeft:5,height:35,fontSize:14,borderColor:'#000',borderWidth:1}}
-                                returnKeyType='send'
-                                multiline={true}
-                                onChangeText={(msgText) => this.setState({msgText})}
-                                value={this.state.msgText}
-                                onKeyPress={(e)=>{
+                        messages={this.state.messages}
+                        user={this.state.userInfo}
+                        onSend={messages => this.onSend(messages)}
+                        renderInputToolbar={e=>{
+                            return(
+                                <View >
+                                    <View style={styles.inputViewStyle} ref='inputTool'>
+                                        <TouchableHighlight onPress={()=>this.setRightMenu()}  >
+                                            <Image source={require('../images/schat.png')} style={{width:30,height:30}}/>
+                                        </TouchableHighlight>
+                                        <TextInput
+                                            ref={(e)=>console.log(e)}
+                                            onChange={this.changeContent}
+                                            multiline={true}
+                                            value={this.state.text}
+                                            style={styles.inputStyle}
+                                        ></TextInput>
+                                        <TouchableHighlight onPress={()=>{
+                                            e.onSend({ text: this.state.text.trim() }, true);
+                                        }}>
+                                            <Image source={require('../images/schat.png')} style={{width:30,height:30}}/>
+                                        </TouchableHighlight>
+                                    </View>
+                                    {this.renderToolBar()}
+                                </View>
+                            )
+                        }}
 
-                                    if(e.nativeEvent.key=='Enter'){
-                                        this.onSend(messages)
-                                    }
-                                }}
-                            />
-                            <TouchableHighlight onPress={()=>{
-                                let showOrHide=this.state.showTool?false:true
-                                this.setState({
-                                    showTool:showOrHide
-                                })
-                            }}>
-                                <Image source={require('../images/help.png')} style={{width:40,height:40}}/>
-                            </TouchableHighlight>
-                            <TouchableHighlight onPress={()=>{
-                                let showOrHide=this.state.showTool?false:true
-                                this.setState({
-                                    showTool:showOrHide
-                                })
-                            }}>
-                                <Image source={require('../images/help.png')} style={{width:40,height:40}}/>
-                            </TouchableHighlight>
-                        </View>
-                    )
-                }}
+                        minInputToolbarHeight={this.state.ToolBarHeight}
+                        showUserAvatar={true}
+                        renderChatFooter={()=>{
+                            return (<View style={styles.footerContainer}>
+                                <Text style={styles.footerText}>
+                                    1
+                                </Text>
+                            </View>)
+                        }}
+                        keyboardShouldPersistTaps={'handled'}
+                    />
 
-                renderChatFooter={()=>{
-                    if(this.state.showTool){
-                        return (<View style={styles.footerContainer}>
-                            <Text style={styles.footerText}>
-                                1
-                            </Text>
-                        </View>)
-                    }
-                    return null;
-                }}
-                showUserAvatar={true}
-            />
+
+
         )
     }
 }
 
 const styles=StyleSheet.create({
-    footerContainer: {
-        width:'100%',
-        height:60,
-        backgroundColor:'#fff'
-    },
-    footerText: {
-        fontSize: 14,
-        color: '#aaa',
-    },
-    inputToolBar:{
+    inputViewStyle:{
         flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'center'
+        alignItems:"flex-end",
+        padding:10,
+        height:50,
+    },
+    inputStyle:{
+        width:200,
+        paddingLeft:5,
+        minHeight:30,
+        maxHeight:100,
+        marginLeft:10,
+        backgroundColor:'#ff0000',
+    },
+    container:{
+        width:'100%',
+        height:'100%'
     }
 })

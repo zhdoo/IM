@@ -7,6 +7,7 @@ import UserInfo from './src/pages/UserInfo'
 import SpecilServe from './src/pages/SpecilServe'
 import ChengXin from './src/pages/ChengXin'
 import ChatWindow from './src/pages/ChatWindow'
+import Chats from './src/pages/Chats'
 
 const App = StackNavigator({
     Home: {
@@ -27,6 +28,10 @@ const App = StackNavigator({
     ,
     ChatWindow: {
         screen: ChatWindow,
+    }
+    ,
+    Chats: {
+        screen: Chats,
     }
 
 
