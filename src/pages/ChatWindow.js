@@ -2,21 +2,27 @@ import React, {Component} from 'react';
 import ReactNative, {
     StyleSheet,
     View,
-    Text,
+    ScrollView,
     Image,
+    Text, Dimensions,
     TextInput,
+    KeyboardAvoidingView,
+    Animated,
     TouchableHighlight,
-    KeyboardAvoidingView
-
+    Keyboard
 } from 'react-native';
 
-
-
-import { GiftedChat } from 'react-native-gifted-chat'
-
+import  ChatBody from '../compoments/ChatBody'
+const width=Dimensions.get('window').width
+const height=Dimensions.get('window').height
 export  default  class ChatWindow extends React.Component {
-    state = {
-        messages: [],
+    constructor(props) {
+        super(props);
+        this.state = {
+            itemHeight:height,
+            scrollAnim: new Animated.Value(0),
+            showButtons:false,
+        };
     }
     static navigationOptions = ({navigation}) => ({
         title: 'tt',
@@ -30,124 +36,113 @@ export  default  class ChatWindow extends React.Component {
         toolBarHeight:50
     })
 
-    componentWillMount() {
-        this.setState({
-            userId:1,
-            typingText: null,
-            msgText:'',
-            userInfo:{
-                _id: 1,
-                name: 'React Native',
-                avatar: 'http://pic2.58.com/jiaoyou/yyw_img/211.jpg',
-            },
-            messages: [
-                {
-                    _id: 1,
-                    text: 'Hello developer',
-                    createdAt: new Date(),
-                    user: {
-                        _id: 2,
-                        name: 'React Native',
-                        avatar: 'http://pic2.58.com/jiaoyou/yyw_img/211.jpg',
-                    },
-                },
-                {
-                    _id: 2,
-                    text: 'Hello developer',
-                    createdAt: new Date(),
-                    user: {
-                        _id: 2  ,
-                        name: 'React Native',
-                        avatar: 'http://pic2.58.com/jiaoyou/yyw_img/211.jpg',
-                    },
-                },
-            ],
-        })
+    componentWillMount () {
+        this.keyboardDidShowListener = Keyboard.addListener('keyboardWillShow', this._keyboardDidShow.bind(this));
+        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide.bind(this));
     }
 
-    onSend(messages = []) {
-        if(this.state.text!=''){
-            this.setState(previousState => ({
-                messages: GiftedChat.append(previousState.messages, messages),
-            }))
+    componentWillUnmount () {
+        this.keyboardDidShowListener.remove();
+        this.keyboardDidHideListener.remove();
+    }
+
+    _keyboardDidShow () {
+        if(this.state.showButtons){
+            Animated.timing(
+                this.state.scrollAnim,
+                {
+                    toValue: 0,
+                    duration: 1,
+                }
+            ).start();
+            this.setState({
+                showButtons:false,
+            })
+        }
+        console.log(this.state.showButtons);
+    }
+
+    _keyboardDidHide () {
+        console.log(this.state.showButtons);
+    }
+    _onPressBtn(){
+        if(this.state.showButtons){
+            Animated.timing(
+                this.state.scrollAnim,
+                {
+                    toValue: 0,
+                    duration: 250,
+                }
+            ).start();
+            this.setState({
+                showButtons:false,
+            })
+        }else{
+            Keyboard.dismiss();
+            Animated.timing(
+                this.state.scrollAnim,
+                {
+                    toValue: -200,
+                    duration: 250,
+                }
+            ).start();
+            this.setState({
+                showButtons:true,
+            })
+
         }
 
-        this.setState({
-            text:''
-        })
     }
-
-
-    changeContent = (event)=> {
-
-        this.setState({
-            text: event.nativeEvent.text,
-        });
-    }
-    renderToolBar(){
-        if(this.state.showTool){
-            return (<View style={styles.footerContainer}>
-                <Text style={styles.footerText}>
-                    1
-                </Text>
-            </View>)
+    _onPressHideBottom(){
+        if(this.state.showButtons){
+            Animated.timing(
+                this.state.scrollAnim,
+                {
+                    toValue: 0,
+                    duration: 250,
+                }
+            ).start();
+            this.setState({
+                showButtons:false,
+            })
         }
-        return null;
-    }
-
-    setRightMenu(){
-        this.refs.TextInput.blur();
-        let showOrHide=this.state.showTool?false:true
-        this.setState({
-            toolBarHeight:200,
-            showTool:showOrHide
-        })
     }
 
     render() {
         return (
 
-            <GiftedChat
-                        messages={this.state.messages}
-                        user={this.state.userInfo}
-                        onSend={messages => this.onSend(messages)}
-                        renderInputToolbar={e=>{
-                            return(
-                                <View >
-                                    <View style={styles.inputViewStyle} ref='inputTool'>
-                                        <TouchableHighlight onPress={()=>this.setRightMenu()}  >
-                                            <Image source={require('../images/schat.png')} style={{width:30,height:30}}/>
-                                        </TouchableHighlight>
-                                        <TextInput
-                                            ref={(e)=>console.log(e)}
-                                            onChange={this.changeContent}
-                                            multiline={true}
-                                            value={this.state.text}
-                                            style={styles.inputStyle}
-                                        ></TextInput>
-                                        <TouchableHighlight onPress={()=>{
-                                            e.onSend({ text: this.state.text.trim() }, true);
-                                        }}>
-                                            <Image source={require('../images/schat.png')} style={{width:30,height:30}}/>
-                                        </TouchableHighlight>
-                                    </View>
-                                    {this.renderToolBar()}
-                                </View>
-                            )
-                        }}
+            <Animated.View style={{top:this.state.scrollAnim, position:'absolute', height:height-60,
+                alignItems: 'center',}}>
+                <KeyboardAvoidingView behavior='position'  keyboardVerticalOffset={60}>
+                    <ScrollView keyboardDismissMode={'on-drag'}  onTouchStart={this._onPressHideBottom.bind(this)}  keyboardShouldPersistTaps={'never'}  style={{borderWidth:1,width:width}} >
 
-                        minInputToolbarHeight={this.state.ToolBarHeight}
-                        showUserAvatar={true}
-                        renderChatFooter={()=>{
-                            return (<View style={styles.footerContainer}>
-                                <Text style={styles.footerText}>
-                                    1
-                                </Text>
-                            </View>)
-                        }}
-                        keyboardShouldPersistTaps={'handled'}
-                    />
+                        <View style={styles.msgMain}>
+                            <TouchableHighlight onPress={()=>{
+                                alert(0)
+                            }}    underlayColor='rgba(0,0,0,0)'><Text>1111</Text></TouchableHighlight>
+                        </View>
 
+                    </ScrollView>
+
+                    <View  style={{height:60,borderWidth:1,width:width,flexDirection:'row'}}>
+                        <TextInput
+                            style={styles.tabInput}
+                            onChangeText={(text) => this.setState({text})}
+                            value={this.state.text}
+                            returnKeyType={'send'}
+                        />
+                        <TouchableHighlight onPress={this._onPressBtn.bind(this)}>
+                        <Image
+                            source={require('../images/search.png')}
+                            style={{width:24,height:24,marginRight:3,marginTop:3}}
+                        />
+                        </TouchableHighlight>
+                    </View>
+                </KeyboardAvoidingView>
+                <View   style={styles.buttonBtn}>
+                    <Text>待显示的内容</Text>
+                </View>
+            </Animated.View>
 
 
         )
@@ -155,22 +150,17 @@ export  default  class ChatWindow extends React.Component {
 }
 
 const styles=StyleSheet.create({
-    inputViewStyle:{
-        flexDirection:'row',
-        alignItems:"flex-end",
-        padding:10,
-        height:50,
-    },
-    inputStyle:{
-        width:200,
-        paddingLeft:5,
-        minHeight:30,
-        maxHeight:100,
-        marginLeft:10,
-        backgroundColor:'#ff0000',
-    },
-    container:{
+    msgMain:{
         width:'100%',
-        height:'100%'
+        backgroundColor:'red'
+    },
+    tabInput:{
+        height: 40, borderColor: 'gray', borderWidth: 1,
+        flex:1
+    },
+    buttonBtn:{
+        width:'100%',
+        height:200,
+        borderWidth:1,
     }
 })
