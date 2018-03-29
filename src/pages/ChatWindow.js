@@ -114,17 +114,55 @@ export  default  class ChatWindow extends React.Component {
             <Animated.View style={{top:this.state.scrollAnim, position:'absolute', height:height-60,
                 alignItems: 'center',}}>
                 <KeyboardAvoidingView behavior='position'  keyboardVerticalOffset={60}>
-                    <ScrollView keyboardDismissMode={'on-drag'}  onTouchStart={this._onPressHideBottom.bind(this)}  keyboardShouldPersistTaps={'never'}  style={{borderWidth:1,width:width}} >
-
+                    <ScrollView keyboardDismissMode={'on-drag'}  onTouchStart={this._onPressHideBottom.bind(this)}  keyboardShouldPersistTaps={'never'}  style={{width:width}} >
                         <View style={styles.msgMain}>
-                            <TouchableHighlight onPress={()=>{
-                                alert(0)
-                            }}    underlayColor='rgba(0,0,0,0)'><Text>1111</Text></TouchableHighlight>
+                            <View style={styles.msgTimeLine}>
+                                <Text style={styles.timeStyle}>03-18 15:23</Text>
+                            </View>
+                            <View style={styles.msgLeftItem}>
+                                <Image style={styles.avatarImg} source={{uri:'http://pic2.58.com/jiaoyou/yyw_img/213.jpg'}} />
+                                <View style={styles.triangleLeft}></View>
+                                <View style={styles.msgLeftBox}><Text style={{padding:5}}>12321321321</Text></View>
+                            </View>
+                            <View style={styles.msgRightItem}>
+                                <View style={styles.msgRightBox}><Text style={{padding:5}}>12321321321</Text></View>
+                                <View style={styles.triangleRight}></View>
+                                <Image style={styles.avatarImg} source={{uri:'http://pic2.58.com/jiaoyou/yyw_img/213.jpg'}} />
+                            </View>
+                            <View style={styles.msgLeftItem}>
+                                <Image style={styles.avatarImg} source={{uri:'http://pic2.58.com/jiaoyou/yyw_img/213.jpg'}} />
+                                <View style={styles.triangleLeft}></View>
+                                <View style={styles.msgLeftBox}><Text style={{padding:5}}>12321321321</Text></View>
+                            </View>
+                            <View style={styles.msgTimeLine}>
+                                <Text style={styles.timeStyle}>03-18 15:23</Text>
+                            </View>
+                            <View style={styles.msgRightItem}>
+                                <View style={styles.msgRightBox}><Text style={{padding:5}}>12321321321</Text></View>
+                                <View style={styles.triangleRight}></View>
+                                <Image style={styles.avatarImg} source={{uri:'http://pic2.58.com/jiaoyou/yyw_img/213.jpg'}} />
+                            </View>
+                            <View style={styles.msgLeftItem}>
+                                <Image style={styles.avatarImg} source={{uri:'http://pic2.58.com/jiaoyou/yyw_img/213.jpg'}} />
+                                <View style={styles.triangleLeft}></View>
+                                <View style={styles.msgLeftBox}><Text style={{padding:5}}>12321321321</Text></View>
+                            </View>
+                            <View style={styles.msgRightItem}>
+                                <View style={styles.msgRightBox}><Text style={{padding:5}}>123213112sadads111fdsafdsfdsnihaoasdjhsaikhdjakdsfhsej1321dsfdsafdsfdsnihaoasdjhsaikhdjakdsfhsej1321dsfdsafdsfdsnihaoasdjhsaikhdjakdsfhsej1321</Text></View>
+                                <View style={styles.triangleRight}></View>
+                                <Image style={styles.avatarImg} source={{uri:'http://pic2.58.com/jiaoyou/yyw_img/213.jpg'}} />
+                            </View>
                         </View>
 
                     </ScrollView>
 
-                    <View  style={{height:60,borderWidth:1,width:width,flexDirection:'row'}}>
+                    <View  style={styles.tabInputView}>
+                        <TouchableHighlight onPress={this._onPressBtn.bind(this)}>
+                            <Image
+                                source={require('../images/voice.png')}
+                                style={styles.icon}
+                            />
+                        </TouchableHighlight>
                         <TextInput
                             style={styles.tabInput}
                             onChangeText={(text) => this.setState({text})}
@@ -132,9 +170,15 @@ export  default  class ChatWindow extends React.Component {
                             returnKeyType={'send'}
                         />
                         <TouchableHighlight onPress={this._onPressBtn.bind(this)}>
+                            <Image
+                                source={require('../images/emoji.png')}
+                                style={styles.icon}
+                            />
+                        </TouchableHighlight>
+                        <TouchableHighlight onPress={this._onPressBtn.bind(this)}>
                         <Image
-                            source={require('../images/search.png')}
-                            style={{width:24,height:24,marginRight:3,marginTop:3}}
+                            source={require('../images/inputmore.png')}
+                            style={styles.icon}
                         />
                         </TouchableHighlight>
                     </View>
@@ -152,15 +196,105 @@ export  default  class ChatWindow extends React.Component {
 const styles=StyleSheet.create({
     msgMain:{
         width:'100%',
-        backgroundColor:'red'
     },
     tabInput:{
-        height: 40, borderColor: 'gray', borderWidth: 1,
-        flex:1
+        height: 40, borderColor: '#cecece', borderWidth: 1,
+        borderRadius:3,
+        marginRight:5,
+        marginLeft:5,
+        flex:1,
+        paddingLeft:5,
+        backgroundColor:'#ffffff'
     },
     buttonBtn:{
         width:'100%',
         height:200,
         borderWidth:1,
+    },
+    tabInputView:{
+        height:60,
+        width:width,
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:"center",
+        backgroundColor:'#f9f9f9',
+        paddingLeft:5,
+        paddingRight:5,
+        borderTopWidth:1,
+        borderColor:"#afafaf"
+    },
+    icon:{
+        width:30,height:30,margin:5
+    },
+    msgLeftItem:{
+        flexDirection:"row",
+        marginLeft:10,
+        marginTop:5,
+        marginBottom:5,
+    },
+    msgRightItem:{
+        flexDirection:"row",
+        marginRight:10,
+        alignSelf: 'flex-end',
+        marginTop:5,
+        marginBottom:5,
+    },
+    avatarImg:{
+        width:40,
+        height:40,
+    },
+    triangleLeft: {
+        width: 0,
+        height: 0,
+        marginTop:10,
+        backgroundColor: 'transparent',
+        borderStyle: 'solid',
+        borderLeftWidth: 6,
+        borderRightWidth: 6,
+        borderBottomWidth:8,
+        borderTopWidth: 8,
+        borderLeftColor: 'transparent',
+        borderRightColor: '#fff',
+        borderTopColor: 'transparent',
+        borderBottomColor: 'transparent',
+    },
+    triangleRight: {
+        width: 0,
+        height: 0,
+        marginTop:10,
+        backgroundColor: 'transparent',
+        borderStyle: 'solid',
+        borderLeftWidth: 6,
+        borderRightWidth: 6,
+        borderBottomWidth:8,
+        borderTopWidth: 8,
+        borderLeftColor: '#2ccf09',
+        borderRightColor: 'transparent',
+        borderTopColor: 'transparent',
+        borderBottomColor: 'transparent',
+    },
+    msgLeftBox:{
+        backgroundColor:'#fff',
+        padding:5,
+        borderRadius:3,
+        maxWidth:width-80,
+
+    },
+    msgRightBox:{
+        backgroundColor:'#2ccf09',
+        padding:5,
+        borderRadius:3,
+        maxWidth:width-80,
+    },
+    msgTimeLine:{
+        width:width,
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center',
+        marginTop:10,
+        marginBottom:5
+    },
+    timeStyle:{
+        fontSize:12,color:'#999'
     }
 })
