@@ -20,8 +20,6 @@ import {
 } from 'react-native';
 
 
-import * as Animatable from 'react-native-animatable';
-
 
 const itemWidth=Dimensions.get('window').width
 const itemHeight=Dimensions.get('window').height
